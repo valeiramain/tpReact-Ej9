@@ -1,13 +1,14 @@
-
+import FormularioCita from './components/FormularioCita'
 import './App.css'
 
 function App() {
-  
+
   return (
     <>
-    <main>
-     <h1 className='text-light text-center py-4'>Administrador de Pacientes de Veterinaria</h1>
-     </main>
+      <main className='container'>
+        <h1 className='text-light text-center py-3'>Administrador de Pacientes de Veterinaria</h1>
+        <FormularioCita></FormularioCita>
+      </main>
     </>
   )
 }
