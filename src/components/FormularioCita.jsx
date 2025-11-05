@@ -7,10 +7,12 @@ import { useForm } from "react-hook-form"
 import { useState, useEffect } from 'react';
 
 const FormularioCita = () => {
-    const [arrayCitas, setArrayCitas] = useState([])
+    const citasLocalStorage = JSON.parse(localStorage.getItem('listaCitas')) || []
+    const [arrayCitas, setArrayCitas] = useState(citasLocalStorage)
     
     useEffect(() => {
         console.log("Citas actualizadas:", arrayCitas);
+        localStorage.setItem('listaCitas',JSON.stringify(arrayCitas))
     }, [arrayCitas]);
 
     // para validaciones del form
@@ -21,12 +23,11 @@ const FormularioCita = () => {
     } = useForm()
 
 
-
-
     const guardarCita = (cita) => {
         //despues de las validaciones, guarda la cita
         console.log(cita)
         setArrayCitas([...arrayCitas, cita])
+        // e.target.reset()
     }
 
     return (

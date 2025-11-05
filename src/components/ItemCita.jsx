@@ -9,13 +9,13 @@ const ItemCita = ({ cita }) => {
             <Card >
                 <Card.Header>
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                    <ul class="list-unstyled">
+                    <ul className="list-unstyled">
                         <li>Mascota: {cita.nombreMascota}</li>
                         <li>Dueño:   {cita.nombreDueno}</li>
                     </ul>
                 </Card.Header>
                 <Card.Body className="bg-secondary-subtle rounded shadow">
-                    <ul class="list-unstyled">
+                    <ul className="list-unstyled">
                         <li>Fecha:   {cita.fechaCita}</li>
                         <li>Hora:    {cita.horaCita}</li>
                         <li>Sintomas:{cita.sintomas}</li>
