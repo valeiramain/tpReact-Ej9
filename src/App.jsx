@@ -5,7 +5,9 @@ function App() {
   
   return (
     <>
-     <h1>veterinaria</h1>
+    <main>
+     <h1 className='text-light text-center py-4'>Administrador de Pacientes de Veterinaria</h1>
+     </main>
     </>
   )
 }
