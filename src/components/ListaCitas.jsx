@@ -1,7 +1,7 @@
 import Row from 'react-bootstrap/Row';
 import ItemCita from "./ItemCita";
 
-const ListaCitas = ({ arrayCitas }) => {
+const ListaCitas = ({ arrayCitas,borrarCita }) => {
     return (
         <>
             <section className=" rounded shadow pb-3">
@@ -11,7 +11,7 @@ const ListaCitas = ({ arrayCitas }) => {
 
                 <Row xs={1} md={2} className="g-3">
                     {
-                        arrayCitas.map((cita, indice) => <ItemCita key={indice} cita={cita} ></ItemCita>)
+                        arrayCitas.map((cita, indice) => <ItemCita key={indice} cita={cita} borrarCita = {borrarCita}></ItemCita>)
                     }
                 </Row>
             </section>

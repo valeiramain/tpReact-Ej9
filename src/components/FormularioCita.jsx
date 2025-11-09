@@ -5,14 +5,16 @@ import Row from 'react-bootstrap/Row';
 import ListaCitas from "./ListaCitas";
 import { useForm } from "react-hook-form"
 import { useState, useEffect } from 'react';
+import Swal from 'sweetalert2'
 
 const FormularioCita = () => {
     const citasLocalStorage = JSON.parse(localStorage.getItem('listaCitas')) || []
     const [arrayCitas, setArrayCitas] = useState(citasLocalStorage)
-    
+
+    // para rednerizar cada vez que se agrega una cita
     useEffect(() => {
         console.log("Citas actualizadas:", arrayCitas);
-        localStorage.setItem('listaCitas',JSON.stringify(arrayCitas))
+        localStorage.setItem('listaCitas', JSON.stringify(arrayCitas))
     }, [arrayCitas]);
 
     // para validaciones del form
@@ -20,14 +22,35 @@ const FormularioCita = () => {
         register,
         handleSubmit,
         formState: { errors },
+        reset
     } = useForm()
 
 
     const guardarCita = (cita) => {
-        //despues de las validaciones, guarda la cita
-        console.log(cita)
+        //despues de las validaciones, guarda la cita en un array
+
+        // agrega ID a la cita
+        cita.IDCita = crypto.randomUUID();
         setArrayCitas([...arrayCitas, cita])
-        // e.target.reset()
+        Swal.fire({
+            title: "Cita Agendada!",
+            icon: "success",
+            draggable: true
+        });
+        reset()
+    }
+
+    const borrarCita = (IDCita) => {
+
+        // genera nuevo array sin la cita que se quire borrar
+        const citasFiltradas = arrayCitas.filter((cita) => cita.IDCita !== IDCita)
+
+        setArrayCitas(citasFiltradas)
+        Swal.fire({
+            title: "Cita Eliminada!",
+            icon: "success",
+            draggable: true
+        });
     }
 
     return (
@@ -121,7 +144,7 @@ const FormularioCita = () => {
                     </div>
                 </Form>
             </section>
-            <ListaCitas arrayCitas={arrayCitas}></ListaCitas>
+            <ListaCitas arrayCitas={arrayCitas} borrarCita={borrarCita}></ListaCitas>
         </>
     );
 };
